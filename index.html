@@ -10,6 +10,47 @@
 
   <title>Modin - Scale Your Pandas Workflows</title>
 
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      testTyped();
+      
+      function testTyped(){
+          var options1 = {
+                strings: ["<span style='color:#cc3300;'> import </span> pandas <span style='color:#cc3300'> as </span> pd"],
+                typeSpeed: 50,
+                showCursor: false,
+                onStringTyped: function(index, self) {
+                  if (index == 0) {
+                     typed.stop();
+                     setTimeout(function(){ 
+                        var foo = document.getElementById("element1");
+                        foo.innerHTML = '<span style="color:gray;"> # import pandas as pd </span>';
+                        var options2 = {
+                          strings: ["<span style='color:#cc3300;'> import </span> modin.pandas <span style='color:#cc3300'> as </span> pd"],
+                          typeSpeed: 50, 
+                          showCursor: false
+                        }
+                        var typed2 = new Typed('#element2', options2);}, 1000);
+
+                      setTimeout(function(){
+                        var el1 = document.getElementById("element1");
+                        var el2 = document.getElementById("element2");
+                        el1.innerHTML = '';
+                        el2.innerHTML = '';
+                        testTyped(); }, 5000);
+                  }
+                }
+          }
+
+        var typed = new Typed('#element1', options1);
+      };
+    });
+
+
+  </script>
+
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,6 +63,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/agency.css" rel="stylesheet">
+
 
 </head>
 
@@ -74,8 +116,25 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h2 class="section-heading text-uppercase">Accelerate your Pandas workflows by changing a single line of code</h2>
-          <!-- <h3 class="section-subheading text-muted">INSERT CODE HERE</h3> -->
-          <img src="img/oneLine.png" style="width: 90%;">
+          <div class="code-container" style="min-width: 200px; min-height: 150px; border: 1px solid black; font-family:'Consolas';">
+            <div style="color: navy; min-width: 8%; display: inline-block; position:absolute;left:1%; top:47%;">In [1]:</div>
+            <div style="background-color: #F6F6F6; text-align: left; border: 1px solid lightgray; min-width: 87%; min-height: 60px; margin-top: 10px; display: inline-block; position: absolute; left: 9%; top:43%;">
+                <span class="element1" id="element1"></span>
+                <br>
+                <span class="element2" id="element2"></span>
+            </div> 
+            <br>
+            <div style="color: navy; min-width: 8%; display: inline-block; position:absolute;left:1%; top:75%;">In [2]:</div> 
+            <div style="background-color: #F6F6F6; text-align: left; border: 1px solid lightgray; min-width: 87%; min-height: 60px; margin-top: 10px; margin-bottom:10px; display: inline-block; position: absolute; left: 9%; top:70%;">
+                  <span class="element3" id="element3">
+                    df = pd.read_csv(<span style="color:#cc3300;">"/path/to/file"</span>) 
+                    <br> 
+                    df.describe()
+                  </span>
+            </div>  
+          </div>
+
+          <!-- <img src="img/oneLine.png" style="width: 90%;"> -->
         </div>
       </div>
       <hr style="width: 60%; margin-top: 30px; margin-bottom: 30px;">
@@ -706,7 +765,6 @@
   </div> -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Plugin JavaScript -->
